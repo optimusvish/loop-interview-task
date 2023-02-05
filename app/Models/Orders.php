@@ -11,7 +11,7 @@ class Orders extends Model
     protected $table = 'orders';
     protected $primaryKey = 'ID';
     protected $fillable = [
-        'customer_id', 'product_id', 'payed', 'payemt_status'
+        'customer_id', 'product_id', 'payed'
     ];
 
     public function setPayedAttribute($value)
