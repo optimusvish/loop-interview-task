@@ -15,7 +15,7 @@ Please follow below steps to clone the project from github and run the applicati
         - you will be mysql console now so Run `mysql create databse [database_name]` In our case it is `mysql create database api_webshop` and hit Enter
         - Now to verify Run `mysql show databases;` It'll show you all the available databases
         - Now go back to `6th Step`
-7. Put your csv files with the following names customers.csv (`loop-interview-task/storage/app/public/customers.csv`), products.csv (`loop-interview-task/storage/app/public/products.csv`)
+7. Put your csv files with the following names customers.csv (`loop-interview-task/storage/app/public/customers.csv`), products.csv (`loop-interview-task/storage/app/public/products.csv`) - I have added the CSV files to `postman_collection` folder.
 8. Run `php artisan db:seed --class=ProductsSeeder;`, `php artisan db:seed --class=CustomersSeeder;` (It'll insert all the records from csv files)
 9. Check the log following log file `loop-interview-task/storage/logs/laravel.log` to see how many records have been inserted.
 10. As I am using Passport for API Authentication you need some personal keys in your local so run this command to create personal key and encryption key so run below commands
@@ -26,6 +26,8 @@ Please follow below steps to clone the project from github and run the applicati
 # REST API
 
 The REST API to this app is described below.
+
+I have also added all the API Collection of Postman Client added under `postman_collection` please import that into postman and you can test the apis directly.
 
 ## Register User
 

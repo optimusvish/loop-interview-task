@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "6eced5d9-010f-4fe6-9613-18595702a760",
+		"name": "Loop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6886946"
+	},
+	"item": [
+		{
+			"name": "Loop - SuperPay",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"order_id\": 24,\n    \"customer_email\": \"user@email.com\",\n    \"value\": 33.4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://superpay.view.agentur-loop.com/pay",
+					"protocol": "https",
+					"host": [
+						"superpay",
+						"view",
+						"agentur-loop",
+						"com"
+					],
+					"path": [
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Vishnu\",\n    \"email\":\"iamvishnu2@example.com\",\n    \"password\":\"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"iamvishnu2@example.com\",\n    \"password\":\"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMWY4NjFhOTYzZDZmYzY1Yzg4MTBjZGJiYWMwZjEyM2MxMjBmZTI5MWZhNTY5NjBmY2M0ODgwZGY4OGM2Y2QwOTNiN2RjM2Q5ODM0ODUxM2YiLCJpYXQiOjE2NzU2NzgwMjIuNzUxMTkzLCJuYmYiOjE2NzU2NzgwMjIuNzUxMTk2LCJleHAiOjE2NzU2Nzk4MjIuNzQ0Njc4LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.r5NhB8oL0-4f4EKrfbVeCXuhMDNR9XE8y2glBHtPbfuIbAsdGFu2E-cEorXotGTqr28OlVs0I0cTTMCH9VQavqFgh9rIF4FVIQKyFYUIqiLXTedOoqDDwnHCDTdQ2jTxPgsIu7GZy5-Z7FVmAzj3pmjlq2mgby3GY2pBT_l8XlNO-MBDyggXAVnpDVhN6e6ILD6XjgmzRl98ljTQGGNfDxPDirLaMpv2ICumgeWpOrrHws5X0KLRZcHd0bSc_359YjBGluDhu2ThA5OrTbup8jnUF9uVOqsYNT_0Q9xE7Y3rVs4ujCWE2HNHM5yfW9AFvUBHlyuq3iFM_Wk-Ti8xVThVKgSK812DZ6a9_nfROMD5WYH6A9w-0jZqGr9fXEfYXcumFA4nWrqUZMsBcc6jkmRKDthPbfpCSnzUTer8amBus3VJhAEur2iLIpmAUgPh3PGoumxRVQFxOJk-z4V0HjYyd3irC2g54lHTf3nq6sHU5osc565hShWyfiQ8YY1ioB9IwAoaRuCcDOPvQC5-EK5JVOpNWoYoFbl0A3lW05KBslVlMz6hOJvxV-AlYY_hdy8sTiT98ZImO-4Ov8UvuAn4LXvCDgXRkVmW4l5WKL1MX-kb2Pw5a0X1S6lUKpSYq67blAcfMymQdVr6Kl3oAp0NsDLgNGGNLeumt20jp8c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMTc0ZWFjM2FmYjVkNjFiNzUzNzY4ZWUyMjI5MTk2YTFmMzMwZjE0YjcxNDI5OGRkMjVlZDg0MmFiNTZiNzI1NWYzNDgwZjIzNjRjZWEzMDIiLCJpYXQiOjE2NzU2ODYwOTkuNDUzMzU3LCJuYmYiOjE2NzU2ODYwOTkuNDUzMzYsImV4cCI6MTY3NTY4Nzg5OS40NDgyNTksInN1YiI6IjUiLCJzY29wZXMiOltdfQ.q0tlsPMFWvHKFzR1Lamt7st5uFIG33T8Jlby8uCTAf9ocK1-j2HNw4x1ChlGU3X2wwCHSazkvNdIkZsCOBUIbpU3RKBqYFgFPNu0mCp_4e2WD_c7ClID-3EB4ha6F9kDXYsGwy3TU1TdHpgWg7BlFxAMj39WJ0WJeldmqnM7PxOrEx297-6YMJUqBAgy7-MmHPlmcA291dvgmIVqLs7p0J5Al8pVxuOLLn06qqZPdffiDv8iTjNnZpIv-8Kgx9nUhe5l0m_xkwrq9q8Mq1Mr_yQ0oDVVSulU_NjU9GC7WCM27RZhjLrMrEyiWzgKL0CQ6vSJWx8WW9bEGBdQJHe04hso2cUpQZ6eCFlV-hTyN_0vu7TST7-NGPCOfBreUqEPQIX4VjCl0H1LGj9oK8NjvgQWhZsHJkyYApE3P2f3u-O2V9c89yLm9pWtzeFactzp2iHXooTx8cFcaQ2m-rRCl4RrgGD514MF5b9u0RlUy09EgYgroDazikbVLDmYjC8t5SCbFucx37RtsLVAHA5MnxNRH7Z01EvAE--TUKVC0uE4v8xa9kd_e4g8gTTnfH6luTZiKZjZSTBvQtCmeWpEHng6uLmYf1zFCEOy9QGinITWvdgKYHtq1h96jAR660yXAADSB8T53iXPyzsGB-R_6duPwWYlONLWEYb1_bCEHss",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/api/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiZjVhOTczODFiMDNhMmJiZjg0MThkOThkMDc2NTQyNGQ0ZjAwNTIxNzZkMTQ4MWZkYTNmYjhhY2NkNDQ5ZDBmZjkwOTdjZmQ4MDUwNjU5M2EiLCJpYXQiOjE2NzU2ODc5NDAuMjQzMzI5LCJuYmYiOjE2NzU2ODc5NDAuMjQzMzMxLCJleHAiOjE2NzU2ODk3NDAuMjQxNjg1LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.soKFe1hXiWTrpBAzNNbjS9XzRv9IDEmyxele_HjcvhkIM3OPYlUxO8a86IMXqrk-7v_Q8qUCQpzKKnSnZ3mQDhRHR2Oj1m2vsSJ2KPJGvgFPpZSQUekpgA22r2w7-RbVgZvaJXtvCMC86cTL_3L7J3YKG4C3Z0WVPwva0uM4S5ftQ1iHUSYHOfbHmEzdrN0JYQhGy7qAZEFXv5MA4j05iTDtfbqQW7LE5T57_Wp98KSed_Ds99h5WaCFUEP6IByukXvZoQyJvTRZZHy398TzfeAq__05PIm5sQIPAKkhv32NJioZeYRoY1NAJmQ0HdgwNoVmflR3f_iDeLBFppvoe6mY6wzFyjuQZxrsaEzxIGDrmm7ihfm5WxRC3sjDNlyHv0crQaVfL-MTK4BIbUXokuigNEsk_7dxXf2wQtHuuQUAaqr_X5sLbK7sQyPRlt-oQBGGmjZzPe9xgBH8cBUeZ7rwQK1_0JZj0UHatL5RJikkN5kbPxhB16TD-cJY-s1DFmkStnw9CvqFU0nIgJ1ePONQ2MppTPuYtVS-MoGhAHihNQdd0SK7NbYa0-boqXAapnu5deABUzyo4I35BLwbIxOz0_yjqBq1TWTBamv9YMAZpkDMGjOQLPR8Tu7RV8PUZC5chFrukcytF5pX1pf8h9_hU3YsX_cttyQCQ-hcx7Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product\":\"Lee\",\n    \"customer\":\"Rylee_Rodwell1134@cispeto.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/order/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiOWIwZjY2ODVjMzM2MWQ4N2E2MmIyMWNkZDRjMmUzMjdkOWI5MmY2MzRmYjFkYjRkMmEzYTU5ZGNhMjEzOTY5MTY1NmNlZDkxZWM0NmJkNDEiLCJpYXQiOjE2NzU2ODIyMjcuNzYwOTg3LCJuYmYiOjE2NzU2ODIyMjcuNzYwOTg5LCJleHAiOjE2NzU2ODQwMjcuNzU3NDgxLCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.RxE_6ANuxZI1rkI5W92_vGcrVSg1etaIx2OMl0CdAKvooMF-pneXyugBwutMH4Pos8xqV8MrGMxCbMDvcvFfTrcwmrk2__6vun7zDxYLrjmr6VAXQzQ9emr_jaGJ0Z_XlkX8EJB9kgASAvmt705bx2_g0J_GLLe7y80msfcVLb63VHqPPZq5A6VfzHcXnbdkyz5CdE8GgAKSabAwN_Asq884sOsh0rcf2ZzgGNOemWFopfBnZckSEGwYPPJvmrkvwdnAcCk3t3ZT7NAru8mJs_PXPO5W1hclvRPVxaLwIIYDkUReBDvBGd6RoXqlSa5i-vtbgMaiMgpa56WlEk6m3M6EUrggxMxfJrNIyftYStoUrBHqfX1W_uZ2mGcD_j_cQAKtRcW1z2Jq1kDHDZUC62cuMI_b9-E9p2JUJOPfocKaT9S9QadX7fUhX_F0E70vs3GzRwIulzycnx-c9EwV3USUE_ZwcibZ04GW29ds6vNT9PqvNIdUVTtkk3F62mGe_8ylCfbrAcw5_LkkNrzwazoFvElz1OrmNjm2OGLiuC0B3QNAXaxGQRpDfdN1sKbhEwkxRrbJpjXSulcY5hLUXDnKKY3EaTahq0VskEdCc_5YPWYx64YbloOR2YYk4JeTFfBGJoc8UwDhcE9H2HNv3vjZKeT2wqt2rwkUOfQRo-8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product\":\"Baby Gap\",\n    \"customer\":\"Rylee_Rodwell1134@cispeto.com\",\n    \"payed\":true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/order/1/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"1",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pay Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiZjVhOTczODFiMDNhMmJiZjg0MThkOThkMDc2NTQyNGQ0ZjAwNTIxNzZkMTQ4MWZkYTNmYjhhY2NkNDQ5ZDBmZjkwOTdjZmQ4MDUwNjU5M2EiLCJpYXQiOjE2NzU2ODc5NDAuMjQzMzI5LCJuYmYiOjE2NzU2ODc5NDAuMjQzMzMxLCJleHAiOjE2NzU2ODk3NDAuMjQxNjg1LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.soKFe1hXiWTrpBAzNNbjS9XzRv9IDEmyxele_HjcvhkIM3OPYlUxO8a86IMXqrk-7v_Q8qUCQpzKKnSnZ3mQDhRHR2Oj1m2vsSJ2KPJGvgFPpZSQUekpgA22r2w7-RbVgZvaJXtvCMC86cTL_3L7J3YKG4C3Z0WVPwva0uM4S5ftQ1iHUSYHOfbHmEzdrN0JYQhGy7qAZEFXv5MA4j05iTDtfbqQW7LE5T57_Wp98KSed_Ds99h5WaCFUEP6IByukXvZoQyJvTRZZHy398TzfeAq__05PIm5sQIPAKkhv32NJioZeYRoY1NAJmQ0HdgwNoVmflR3f_iDeLBFppvoe6mY6wzFyjuQZxrsaEzxIGDrmm7ihfm5WxRC3sjDNlyHv0crQaVfL-MTK4BIbUXokuigNEsk_7dxXf2wQtHuuQUAaqr_X5sLbK7sQyPRlt-oQBGGmjZzPe9xgBH8cBUeZ7rwQK1_0JZj0UHatL5RJikkN5kbPxhB16TD-cJY-s1DFmkStnw9CvqFU0nIgJ1ePONQ2MppTPuYtVS-MoGhAHihNQdd0SK7NbYa0-boqXAapnu5deABUzyo4I35BLwbIxOz0_yjqBq1TWTBamv9YMAZpkDMGjOQLPR8Tu7RV8PUZC5chFrukcytF5pX1pf8h9_hU3YsX_cttyQCQ-hcx7Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"order_id\": 2,\n    \"customer_email\": \"Rylee_Rodwell1134@cispeto.com\",\n    \"value\": 1,\n    \"payment_method\":\"loop-superpay\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/orders/2/pay",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						"2",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMTc0ZWFjM2FmYjVkNjFiNzUzNzY4ZWUyMjI5MTk2YTFmMzMwZjE0YjcxNDI5OGRkMjVlZDg0MmFiNTZiNzI1NWYzNDgwZjIzNjRjZWEzMDIiLCJpYXQiOjE2NzU2ODYwOTkuNDUzMzU3LCJuYmYiOjE2NzU2ODYwOTkuNDUzMzYsImV4cCI6MTY3NTY4Nzg5OS40NDgyNTksInN1YiI6IjUiLCJzY29wZXMiOltdfQ.q0tlsPMFWvHKFzR1Lamt7st5uFIG33T8Jlby8uCTAf9ocK1-j2HNw4x1ChlGU3X2wwCHSazkvNdIkZsCOBUIbpU3RKBqYFgFPNu0mCp_4e2WD_c7ClID-3EB4ha6F9kDXYsGwy3TU1TdHpgWg7BlFxAMj39WJ0WJeldmqnM7PxOrEx297-6YMJUqBAgy7-MmHPlmcA291dvgmIVqLs7p0J5Al8pVxuOLLn06qqZPdffiDv8iTjNnZpIv-8Kgx9nUhe5l0m_xkwrq9q8Mq1Mr_yQ0oDVVSulU_NjU9GC7WCM27RZhjLrMrEyiWzgKL0CQ6vSJWx8WW9bEGBdQJHe04hso2cUpQZ6eCFlV-hTyN_0vu7TST7-NGPCOfBreUqEPQIX4VjCl0H1LGj9oK8NjvgQWhZsHJkyYApE3P2f3u-O2V9c89yLm9pWtzeFactzp2iHXooTx8cFcaQ2m-rRCl4RrgGD514MF5b9u0RlUy09EgYgroDazikbVLDmYjC8t5SCbFucx37RtsLVAHA5MnxNRH7Z01EvAE--TUKVC0uE4v8xa9kd_e4g8gTTnfH6luTZiKZjZSTBvQtCmeWpEHng6uLmYf1zFCEOy9QGinITWvdgKYHtq1h96jAR660yXAADSB8T53iXPyzsGB-R_6duPwWYlONLWEYb1_bCEHss",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/order/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
