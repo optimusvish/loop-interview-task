@@ -5,15 +5,15 @@ Make sure you have PHP and Composer and mysql installed globally on your compute
 Please follow below steps to clone the project from github and run the application!
 
 1. Run `git clone https://github.com/optimusvish/loop-interview-task.git`
-2. cd loop-interview-task
-3. Run composer install
-4. Run cp .env.example .env or copy .env.example .env
-5. Add your own database detail in .env file
-6. Run php artisan migrate (it'll create all the tables required)
-7. Put your csv files with the following names customers.csv (loop-interview-task/storage/app/public/customers.csv), products.csv (loop-interview-task/storage/app/public/products.csv)
-8. Run php artisan db:seed --class=CustomersSeeder, ProductsSeeder; (It'll insert all the records from csv files)
-9. Check the log following log file loop-interview-task/storage/logs/laravel.log to see how many records have been inserted.
-10. Run php artisan serve
+2. `cd loop-interview-task`
+3. Run `composer install`
+4. Run `cp .env.example .env` or `copy .env.testing .env`
+5. Add your own database detail in `.env` file
+6. Run `php artisan migrate` (it'll create all the tables required)
+7. Put your csv files with the following names customers.csv (`loop-interview-task/storage/app/public/customers.csv`), products.csv (`loop-interview-task/storage/app/public/products.csv`)
+8. Run `php artisan db:seed --class=CustomersSeeder, ProductsSeeder;` (It'll insert all the records from csv files)
+9. Check the log following log file `loop-interview-task/storage/logs/laravel.log` to see how many records have been inserted.
+10. Run `php artisan serve`
 
 # REST API
 
