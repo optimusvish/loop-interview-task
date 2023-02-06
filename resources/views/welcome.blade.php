@@ -9,7 +9,8 @@
 </head>
 
 <body>
-    <h1>Welcome to API Testing</h1>
+    <h1>Follow the Below Instructions to Test Below API's</h1>
+    {{ Illuminate\Mail\Markdown::parse(file_get_contents(base_path() . '/README.md')) }}
 </body>
 
 </html>

@@ -134,3 +134,245 @@ Show all User List
 ```json
 {"data":{"message":"Success","data":[{"id":1,"name":"Vishnu","email":"iamvishnu@example.com","email_verified_at":null,"created_at":"2023-02-06T07:10:19.000000Z","updated_at":"2023-02-06T07:10:19.000000Z"},{"id":2,"name":"Kira","email":"iamvishnu_new@gmail.com","email_verified_at":null,"created_at":"2023-02-06T08:09:39.000000Z","updated_at":"2023-02-06T08:09:39.000000Z"},{"id":3,"name":"Kira","email":"iamvishnu1@gmail.com","email_verified_at":null,"created_at":"2023-02-06T08:34:41.000000Z","updated_at":"2023-02-06T08:34:41.000000Z"},{"id":4,"name":"Vishnu","email":"iamvishnu2@gmail.com","email_verified_at":null,"created_at":"2023-02-06T10:03:07.000000Z","updated_at":"2023-02-06T10:03:07.000000Z"},{"id":5,"name":"Vishnu","email":"iamvishnu2@example.com","email_verified_at":null,"created_at":"2023-02-06T10:06:43.000000Z","updated_at":"2023-02-06T10:06:43.000000Z"}]}}
 ```
+
+# Show All Orders
+
+Show all Order List
+
+**URL** : `/api/orders/`
+
+**Method** : `GET`
+
+**Auth required** : YES (Bearer Token)
+
+**Permissions required** : None
+
+**Data constraints** : `{}`
+
+## Success Responses
+
+**Condition** : User can not see any Accounts.
+
+**Code** : `200 OK`
+
+**Content** : `{[]}`
+
+**Content** : Order list will be shown like below:
+
+```json
+{
+    "data": {
+        "message": "Success",
+        "data": [
+            {
+                "ID": 1,
+                "customer_id": 6,
+                "product_id": 27,
+                "payed": 1,
+                "created_at": "2023-02-06T11:22:34.000000Z",
+                "updated_at": "2023-02-06T12:28:36.000000Z"
+            }
+        ]
+    }
+}
+```
+## Create Order
+
+### Request
+
+`POST /api/order/add`
+**Method** : `POST`
+
+**Auth required** : YES (Token)
+
+**Permissions required** : None
+
+**Data constraints**
+
+Provide product, customer and payed stattus of order to be created.
+
+```json
+{
+    "product":"[Product Name]",
+    "customer":"[Customer Email]",
+    "payed":[Payment Status - Boolean]
+}
+```
+
+**Data example** Except payed all other fields are mandatory
+
+```json
+{
+    "product":"Lee",
+    "customer":"Rylee_Rodwell1134@cispeto.com",
+    "payed":true
+}
+```
+
+## Success Response
+
+**Condition** : If everything is OK and login token is exist then the response is shown below
+
+**Code** : `200 OK`
+
+**Content**
+
+```json
+{
+    "data": {
+        "message": "Order added Successfully!!",
+        "data": {
+            "customer_id": 6,
+            "product_id": 27,
+            "payed": 1,
+            "updated_at": "2023-02-06T11:22:34.000000Z",
+            "created_at": "2023-02-06T11:22:34.000000Z",
+            "ID": 1
+        }
+    }
+}
+```
+
+## Update Order
+
+### Request
+
+`POST /api/order/{id}/add`
+**Method** : `POST`
+
+**Auth required** : YES (Token)
+
+**Permissions required** : None
+
+**Data constraints**
+
+Provide product, customer, payed of order to be updated.
+
+```json
+{
+    "product":"[Product Name]",
+    "customer":"[Customer Email]",
+    "payed":[Payment Status - Boolean]
+}
+```
+
+**Data example** All fields are not mandatory but if exist validation will happen and it'll update only not payed orders
+
+```json
+{
+    "product":"Calvin Klein",
+    "customer":"Rylee_Rodwell1134@cispeto.com"
+}
+```
+
+## Success Response
+
+**Condition** : If everything is OK and login token is exist then the response is shown below
+
+**Code** : `200 OK`
+
+**Content**
+
+```json
+{
+    "data": {
+        "message": "Order updated Successfully!!",
+        "data": {
+            "ID": 1,
+            "customer_id": 6,
+            "product_id": 6,
+            "payed": 0,
+            "created_at": "2023-02-06T11:22:34.000000Z",
+            "updated_at": "2023-02-06T12:48:06.000000Z"
+        }
+    }
+}
+```
+# Delete Order
+
+Delete Order
+
+**URL** : `/api/order/{id}`
+
+**Method** : `PUT`
+
+**Auth required** : YES (Bearer Token)
+
+**Permissions required** : None
+
+**Data constraints** : `{}`
+
+## Success Responses
+
+**Condition** : User can not see any Accounts.
+
+**Code** : `200 OK`
+
+**Content** : `{[]}`
+
+**Content** : The resonse show below for Delete
+
+```json
+{
+    "data": {
+        "message": "Success",
+        "data": "deleted!"
+    }
+}
+```
+## Pay Order
+
+### Request
+
+`POST /api/order/{id}/pay`
+**Method** : `POST`
+
+**Auth required** : YES (Token)
+
+**Permissions required** : None
+
+**Data constraints**
+
+Provide order_id, customer_email, value to proceed with payment
+
+```json
+{
+    "order_id":"[Product Name]",
+    "customer_email":"[Customer Email]",
+    "payment_method":"[Payment Method]",
+    "value":[Price of Product]
+}
+```
+
+**Data example** All fields are not mandatory and if user login exist validation will happen and it'll update the payment
+
+```json
+{
+    "order_id": 2,
+    "customer_email": "Rylee_Rodwell1134@cispeto.com",
+    "value": 1,
+    "payment_method":"loop-superpay"
+}
+```
+
+## Success Response
+
+**Condition** : If everything is OK and login token is exist then the response is shown below
+
+**Code** : `200 OK`
+
+**Content**
+
+```json
+{
+    "data": {
+        "message": "Payment Successful",
+        "data": {
+            "order_id": 2,
+            "customer_email": "Rylee_Rodwell1134@cispeto.com",
+            "value": 1,
+            "payment_method": "loop-superpay"
+        }
+    }
+}
+```
