@@ -1,4 +1,4 @@
-### How to run the API
+### How to run the API's
 
 Make sure you have PHP and Composer and mysql installed globally on your computer.
 
@@ -10,10 +10,18 @@ Please follow below steps to clone the project from github and run the applicati
 4. Run `cp .env.example .env` or `copy .env.testing .env`
 5. Add your own database detail in `.env` file
 6. Run `php artisan migrate` (it'll create all the tables required)
+    - In case if you get `database` not found error follow these below steps
+        - `mysql -uroot -p` Hit Enter it might ask password of your global mysql `useually it'll be empty so hit Enter again`
+        - you will be mysql console now so Run `mysql create databse [database_name]` In our case it is `mysql create database apiwebshop` and hit Enter
+        - Now to verify Run `mysql show databases;` It'll show you all the available databases
+        - Now go back to `6th Step`
 7. Put your csv files with the following names customers.csv (`loop-interview-task/storage/app/public/customers.csv`), products.csv (`loop-interview-task/storage/app/public/products.csv`)
-8. Run `php artisan db:seed --class=CustomersSeeder, ProductsSeeder;` (It'll insert all the records from csv files)
+8. Run `php artisan db:seed --class=ProductsSeeder;`, `php artisan db:seed --class=CustomersSeeder;` (It'll insert all the records from csv files)
 9. Check the log following log file `loop-interview-task/storage/logs/laravel.log` to see how many records have been inserted.
-10. Run `php artisan serve`
+10. As I am using Passport for API Authentication you need some personal keys in your local so run this command to create personal key and encryption key so run below commands
+    - Run `php artisan passport:install`
+    - Run `php artisan key:generate`
+11. Run `php artisan serve`
 
 # REST API
 
