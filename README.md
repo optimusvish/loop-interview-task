@@ -7,12 +7,12 @@ Please follow below steps to clone the project from github and run the applicati
 1. Run `git clone https://github.com/optimusvish/loop-interview-task.git`
 2. `cd loop-interview-task`
 3. Run `composer install`
-4. Run `cp .env.example .env` or `copy .env.testing .env`
+4. Run `copy .env.testing .env`
 5. Add your own database detail in `.env` file
 6. Run `php artisan migrate` (it'll create all the tables required)
     - In case if you get `database` not found error follow these below steps
         - `mysql -uroot -p` Hit Enter it might ask password of your global mysql `useually it'll be empty so hit Enter again`
-        - you will be mysql console now so Run `mysql create databse [database_name]` In our case it is `mysql create database apiwebshop` and hit Enter
+        - you will be mysql console now so Run `mysql create databse [database_name]` In our case it is `mysql create database api_webshop` and hit Enter
         - Now to verify Run `mysql show databases;` It'll show you all the available databases
         - Now go back to `6th Step`
 7. Put your csv files with the following names customers.csv (`loop-interview-task/storage/app/public/customers.csv`), products.csv (`loop-interview-task/storage/app/public/products.csv`)
