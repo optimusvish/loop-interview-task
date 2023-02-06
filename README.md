@@ -1,64 +1,136 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+### How to run the API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Make sure you have PHP and Composer and mysql installed globally on your computer.
 
-## About Laravel
+Please follow below steps to clone the project from github and run the application!
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Run `git clone https://github.com/optimusvish/loop-interview-task.git`
+2. cd loop-interview-task
+3. Run composer install
+4. Run cp .env.example .env or copy .env.example .env
+5. Add your own database detail in .env file
+6. Run php artisan migrate (it'll create all the tables required)
+7. Put your csv files with the following names customers.csv (loop-interview-task/storage/app/public/customers.csv), products.csv (loop-interview-task/storage/app/public/products.csv)
+8. Run php artisan db:seed --class=CustomersSeeder, ProductsSeeder; (It'll insert all the records from csv files)
+9. Check the log following log file loop-interview-task/storage/logs/laravel.log to see how many records have been inserted.
+10. Run php artisan serve
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# REST API
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The REST API to this app is described below.
 
-## Learning Laravel
+## Register User
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Request
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`POST /api/register`
+**Method** : `POST`
 
-## Laravel Sponsors
+**Auth required** : No
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**Permissions required** : None
 
-### Premium Partners
+**Data constraints**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Provide name, email, password of user to be created.
 
-## Contributing
+```json
+{
+    "name": "[name with minimum 3 letters]",
+    "email": "[proper email]",
+    "password": "[paasword with min 4 letters]"
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Data example** All fields must be sent.
 
-## Code of Conduct
+```json
+{
+   "name": "Vishnu",
+    "email": "iamvishnu@example.com",
+    "password": "1234"
+}
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Success Response
 
-## Security Vulnerabilities
+**Condition** : If everything is OK and an Account didn't exist for this User.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Code** : `201 CREATED`
 
-## License
+**Content**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```json
+{"data":{"message":"User registered successfully!!","data":{"name":"Vishnu","email":"iamvishnu2@gmail.com","updated_at":"2023-02-06T10:03:07.000000Z","created_at":"2023-02-06T10:03:07.000000Z","id":4}}}
+```
+
+## Login User
+
+### Request
+
+`POST /api/login`
+**Method** : `POST`
+
+**Auth required** : No
+
+**Permissions required** : None
+
+**Data constraints**
+
+Provide email, password of user to be created.
+
+```json
+{
+    "email": "[email]",
+    "password": "[paasword]"
+}
+```
+
+**Data example** All fields must be sent.
+
+```json
+{
+    "email": "iamvishnu@example.com",
+    "password": "1234"
+}
+```
+
+## Success Response
+
+**Condition** : If everything is OK and account is exist then the response is shown below
+
+**Code** : `200 OK`
+
+**Content**
+
+```json
+{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiMWY4NjFhOTYzZDZmYzY1Yzg4MTBjZGJiYWMwZjEyM2MxMjBmZTI5MWZhNTY5NjBmY2M0ODgwZGY4OGM2Y2QwOTNiN2RjM2Q5ODM0ODUxM2YiLCJpYXQiOjE2NzU2NzgwMjIuNzUxMTkzLCJuYmYiOjE2NzU2NzgwMjIuNzUxMTk2LCJleHAiOjE2NzU2Nzk4MjIuNzQ0Njc4LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.r5NhB8oL0-4f4EKrfbVeCXuhMDNR9XE8y2glBHtPbfuIbAsdGFu2E-cEorXotGTqr28OlVs0I0cTTMCH9VQavqFgh9rIF4FVIQKyFYUIqiLXTedOoqDDwnHCDTdQ2jTxPgsIu7GZy5-Z7FVmAzj3pmjlq2mgby3GY2pBT_l8XlNO-MBDyggXAVnpDVhN6e6ILD6XjgmzRl98ljTQGGNfDxPDirLaMpv2ICumgeWpOrrHws5X0KLRZcHd0bSc_359YjBGluDhu2ThA5OrTbup8jnUF9uVOqsYNT_0Q9xE7Y3rVs4ujCWE2HNHM5yfW9AFvUBHlyuq3iFM_Wk-Ti8xVThVKgSK812DZ6a9_nfROMD5WYH6A9w-0jZqGr9fXEfYXcumFA4nWrqUZMsBcc6jkmRKDthPbfpCSnzUTer8amBus3VJhAEur2iLIpmAUgPh3PGoumxRVQFxOJk-z4V0HjYyd3irC2g54lHTf3nq6sHU5osc565hShWyfiQ8YY1ioB9IwAoaRuCcDOPvQC5-EK5JVOpNWoYoFbl0A3lW05KBslVlMz6hOJvxV-AlYY_hdy8sTiT98ZImO-4Ov8UvuAn4LXvCDgXRkVmW4l5WKL1MX-kb2Pw5a0X1S6lUKpSYq67blAcfMymQdVr6Kl3oAp0NsDLgNGGNLeumt20jp8c","token_type":"Bearer","expires_at":"2023-02-06 10:37:02"}
+```
+
+# Show All Users
+
+Show all User List
+
+**URL** : `/api/users/`
+
+**Method** : `GET`
+
+**Auth required** : YES (Bearer Token)
+
+**Permissions required** : None
+
+**Data constraints** : `{}`
+
+## Success Responses
+
+**Condition** : User can not see any Accounts.
+
+**Code** : `200 OK`
+
+**Content** : `{[]}`
+
+**Content** : User list will be shown like below:
+
+```json
+{"data":{"message":"Success","data":[{"id":1,"name":"Vishnu","email":"iamvishnu@example.com","email_verified_at":null,"created_at":"2023-02-06T07:10:19.000000Z","updated_at":"2023-02-06T07:10:19.000000Z"},{"id":2,"name":"Kira","email":"iamvishnu_new@gmail.com","email_verified_at":null,"created_at":"2023-02-06T08:09:39.000000Z","updated_at":"2023-02-06T08:09:39.000000Z"},{"id":3,"name":"Kira","email":"iamvishnu1@gmail.com","email_verified_at":null,"created_at":"2023-02-06T08:34:41.000000Z","updated_at":"2023-02-06T08:34:41.000000Z"},{"id":4,"name":"Vishnu","email":"iamvishnu2@gmail.com","email_verified_at":null,"created_at":"2023-02-06T10:03:07.000000Z","updated_at":"2023-02-06T10:03:07.000000Z"},{"id":5,"name":"Vishnu","email":"iamvishnu2@example.com","email_verified_at":null,"created_at":"2023-02-06T10:06:43.000000Z","updated_at":"2023-02-06T10:06:43.000000Z"}]}}
+```
