@@ -48,7 +48,7 @@ Requirements: `Docker` should be installed in your local system
     - Server `db`
     - Username `root`
     - Password `pwd`
-9. In case if you are facing any issue Run ```composer install`` inside the contaner
+9. In case if you are facing any issue Run ```composer install``` inside the container
 
 # REST API List
 
