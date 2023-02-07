@@ -39,7 +39,7 @@ COPY docker/apache2.conf /etc/apache2/sites-available/000-default.conf
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Configure Apache2
-RUN chown -R www-data:www-data /var/www/html \
+RUN chown -R www-data:www-data * \
     && a2enmod rewrite
 
 # Copy your Laravel application files into the Docker container
