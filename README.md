@@ -38,7 +38,11 @@ Requirements: `Docker` should be installed in your local system
 3. Run ```copy .env.testing .env```
 4. Run to Build the Docker Images ```docker-compose --file docker-compose.yml build``` 
 5. Run to start the Containers ```docker-compose --file docker-compose.yml up -d```
-6. 4th Step will create laravel application running with `localhost:8080`, and PHPMyAdmin wirh `localhost:8081`
+6. 4th Step will create laravel application running with `localhost:8080`, and PHPMyAdmin wirh `localhost:8181`
+7. Now Enter into docker container
+    - Run this to check the container name `docker ps -a` and check the name of `loop-interview-task-app` container image and copy that in my case it is `loop-interview-task-app-1`
+    - Now Run ```docker exec -it <container-name> bash``` In My Case it is ```docker exec -it loop-interview-task-app-1 bash```
+    - Now you will be entered into the docker container which will be like ```root@b097ea91a57d:/var/www/html# ``` and follow the next steps.
 7. Now we have to do migration of tables and seed the data to tables by following comands ```php artisan migrate``` ```php artisan db:seed --class=ProductsSeeder```, ```php artisan db:seed --class=CustomersSeeder```
 8. All is set now you can login db and check whether the data is inserted or not by using following credentials
     - Server `db`
