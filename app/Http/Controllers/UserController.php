@@ -2,67 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\LoginUserRequest;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Log;
-use App\Http\Requests\User\StoreUserRequest;
-use Illuminate\Support\Facades\Auth;
-use Exception;
+use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
+use App\Models\User;
+use App\Services\UserValidationService;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    /**
+     * @var UserValidationService
+     */
+    protected $userValidationService;
+
+    public function __construct(UserRepository $userRepository, UserValidationService $userValidationService)
+    {
+        $this->userRepository = $userRepository;
+        $this->userValidationService = $userValidationService;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UserRepository $user)
+    public function index()
     {
-        try {
-            $user = $user->all();
-            return response()->json([
-                "data" => [
-                    "message" => "Success",
-                    "data" => $user,
-                ],
-            ]);
-        } catch (Exception $e) {
-            // Handle all exceptions
-            return response()->json([
-                'message' => 'An error occurred: ' . $e->getMessage(),
-            ], 500);
-        }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function login(LoginUserRequest $request)
-    {
-        try {
-            if (Auth::attempt($request->validated())) {
-                $user = Auth::user();
-                $token = $user->createToken("LaravelRestApi")->accessToken;
-                $expirationTime = date('Y-m-d H:i:s', strtotime('+30 Minutes'));
-                return response()->json([
-                    'token' => $token,
-                    'token_type' => 'Bearer',
-                    'expires_in' => $expirationTime
-                ]);
-            } else {
-                return response()->json(["error" => "Unauthorised"], 401);
-            }
-        } catch (Exception $e) {
-            // Log the full exception details
-            Log::info($e);
-
-            // Return a generic error message to the user
-            return response()->json([
-                'message' => 'An error occurred while processing the request. Please try again later.',
-            ], 500);
-        }
+        return new UserCollection(
+            $this->userRepository->getAll()
+        );
     }
 
     /**
@@ -72,27 +47,36 @@ class UserController extends Controller
      * @param  App\Repositories\UserRepository $userRepository
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request, UserRepository $userRepository)
+    public function store(Request $request)
     {
-        try {
-            $user = $userRepository->create($request);
-            return response()->json(
-                [
-                    "data" => [
-                        "message" => "User registered successfully!!",
-                        "data" => $user,
-                    ],
-                ],
-                201
-            );
-        } catch (Exception $e) {
-            // Log the full exception details
-            Log::info($e);
+        //Validate the Request
+        $this->userValidationService->validateCreate($request->all());
 
-            // Return a generic error message to the user
-            return response()->json([
-                'message' => 'An error occurred while processing the request. Please try again later.',
-            ], 500);
-        }
+        //Sote the data to db
+        $user = $this->userRepository->create($request);
+        return new UserResource($user);
+    }
+
+    public function show($id)
+    {
+        return new UserResource($this->userRepository->find($id));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = $this->userRepository->find($id);
+
+        $this->userValidationService->validateUpdate($request->all(), $user);
+
+        $user = $this->userRepository->update($user, $request->all());
+
+        return new UserResource($user);
+    }
+
+    public function destroy($id)
+    {
+        $this->userRepository->delete($id);
+
+        return response()->json(null, 204);
     }
 }

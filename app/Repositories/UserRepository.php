@@ -13,7 +13,7 @@ class UserRepository
         $this->user = $user;
     }
 
-    public function all()
+    public function getAll()
     {
         return $this->user->all();
     }
@@ -37,9 +37,8 @@ class UserRepository
         ]);
     }
 
-    public function update($id, array $data)
+    public function update($user, array $data)
     {
-        $user = $this->user->find($id);
         $user->update($data);
         return $user;
     }

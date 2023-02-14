@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->group(function () {
     Route::post('register', [UserController::class, 'store']);
-    Route::post('login', [UserController::class, 'login']);
+    Route::post('login', [LoginController::class, 'login']);
 });
 Route::prefix('/')->middleware('auth:api')->group(function () {
     Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
 });
 Route::prefix('/')->middleware('auth:api')->group(function () {
     Route::get('orders', [OrderController::class, 'index']);
